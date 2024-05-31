@@ -1,8 +1,6 @@
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: jsvalencia1/ritecs-fullstack-backend:latest
     container_name: checkingSystem_backend
     command: gunicorn checkingSystem_backEnd.wsgi:application --bind 0.0.0.0:8000
     volumes:
@@ -16,9 +14,7 @@ services:
       - redis
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: jsvalencia1/ritecs-fullstack-frontend:latest
     container_name: checkingSystem_frontend
     environment:
       - NODE_ENV=production
@@ -41,9 +37,7 @@ services:
     container_name: checkingSystem_redis
 
   celery:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: jsvalencia1/ritecs-fullstack-celery:latest
     container_name: checkingSystem_celery
     command: celery -A checkingSystem_backEnd worker -l info
     volumes:
@@ -56,9 +50,7 @@ services:
       - db
 
   celery-beat:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: jsvalencia1/ritecs-fullstack-celery-beat:latest
     container_name: checkingSystem_celery_beat
     command: celery -A checkingSystem_backEnd beat -l info
     volumes:
