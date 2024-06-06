@@ -192,11 +192,16 @@ class ImageViewSet(SortMixin, viewsets.ModelViewSet):
         serializer.save()  # This will call create on the nested serializer as well.
 
     def list(self, request, *args, **kwargs):
+        import time
+        start_time = time.time()
         queryset = self.filter_queryset(self.get_queryset())
 
         # Check if pagination should be applied
         if 'no_page' in request.query_params:
+            
             serializer = self.get_serializer(queryset, many=True)
+            end_time = time.time()
+            logger.debug(f"API Call Duration: {end_time - start_time:.4f} seconds")
             return Response(serializer.data)
         else:
             page = self.paginate_queryset(queryset)
@@ -261,7 +266,8 @@ def login_view(request):
     username = data.get('username')
     password = data.get('password')
 
-    print(username, password)
+    print("Username: ", username)
+    print("Password: ", password)
     user = authenticate(username=username, password=password)
     print("user", user)
     if user is not None:
@@ -281,7 +287,8 @@ def login_view(request):
             'refresh': str(refresh),
             'access': str(refresh.access_token),
             'session_key': request.session.session_key,
-            'message': 'Login successful'
+            'message': 'Login successful',
+            'is_staff': user.is_staff
         }, status=200)
     else:
         return JsonResponse({'error': 'Invalid Credentials'}, status=400)

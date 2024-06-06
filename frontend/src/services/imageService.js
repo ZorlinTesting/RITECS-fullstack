@@ -8,6 +8,8 @@ import axios from '../utilities/axiosConfig';
 
 export const getImageData = async (filters = {}) => {
   console.log("Starting API call to fetch image data..."); // Indicates the start of an API call
+  const apiStartTime = performance.now();
+
   try {
     const queryParams = new URLSearchParams(filters).toString();
     // const url = `${BASE_URL}/api/images/${
@@ -21,6 +23,10 @@ export const getImageData = async (filters = {}) => {
     const response = await axios.get(`/images${queryParams ? `?${queryParams}&no_page=true` : '?no_page=true'}`);
     console.log("API call successful!"); // Indicates the API call was successful
     console.log("Fetched image data:", response.data); // Prints relevant response data
+
+    const apiEndTime = performance.now();
+    console.log(`API call completed in ${(apiEndTime - apiStartTime).toFixed(2)} ms`);
+    
     return response.data;
   } catch (error) {
     console.error("Failed to fetch image data:", error);

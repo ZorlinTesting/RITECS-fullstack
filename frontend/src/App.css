@@ -289,3 +289,21 @@
   width: 100%;
   height: 100%;
 }
+
+
+/* AboutScreen.js */
+.sticky-card-header {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000; /* Adjust as needed to ensure it stays on top */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for better separation */
+}
+
+.limited-size-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px; /* Adjust the height as needed */
+}
+

@@ -15,6 +15,7 @@ RUN apt-get update \
        python3-dev \
        libpq-dev \
        netcat-openbsd \
+       bash \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
@@ -28,6 +29,10 @@ COPY . /usr/src/app/
 # Copy entrypoint.sh
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
+
+# Debugging steps to log the presence and permissions of entrypoint.sh
+RUN ls -l /usr/src/app/entrypoint.sh
+RUN cat /usr/src/app/entrypoint.sh
 
 # Run entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

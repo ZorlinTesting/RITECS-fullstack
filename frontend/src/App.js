@@ -40,6 +40,7 @@ import ImageOperator from "./components/operator/imageOperator";
 // import AdminDashboard from "./resources/admin/adminDashboard";
 // import AdminLayout from "./resources/admin/adminLayout";
 import AdminApp from "./resources/admin/adminApp";
+import AboutScreen from "./components/aboutScreen";
 
 function App() {
   const { i18n } = useTranslation();
@@ -59,6 +60,7 @@ function App() {
             <Routes>
               <Route path="/admin/*" element={<AdminApp />} />
               <Route path="/" element={<IntegratedScreen />} />
+              <Route path="/about" element={<AboutScreen />} />
               <Route path="/images" element={<ImageDisplay />} />
               <Route path="/images/:imageId" element={<ImageDetailView />} />
               <Route path="/images/:imageId/edit" element={<ImageViewer />} />

@@ -112,6 +112,7 @@ const ImageOperator = () => {
   // Effect to process images when they are fetched
   useEffect(() => {
     const processThumbnails = async () => {
+      const processingStartTime = performance.now();
       setIsLoading(true);
       setHasError(null);
 
@@ -146,6 +147,9 @@ const ImageOperator = () => {
             console.error("Error generating thumbnails:", error);
             setHasError(error.message);
           } finally {
+            const processingEndTime = performance.now();
+            console.log(`Total image processing and thumbnail generation took ${(processingEndTime - processingStartTime).toFixed(2)} ms`);
+
             setIsLoading(false);
           }
         } else {
@@ -156,7 +160,9 @@ const ImageOperator = () => {
       }
     };
 
-    processThumbnails();
+    if (!loading && images) {
+      processThumbnails();
+    }
   }, [images, loading, selectedClassType]);
 
 

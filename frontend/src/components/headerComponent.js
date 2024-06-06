@@ -55,7 +55,7 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/contact">Contact</Nav.Link>
+            {/* <Nav.Link href="/contact">Contact</Nav.Link> */}
             {isLoggedIn && <Nav.Link href="/admin">Admin</Nav.Link>}
             {isLoggedIn ? (
               <Nav.Link href="/" onClick={handleLogoutClick}>
@@ -91,7 +91,7 @@ const Header = () => {
           </Nav> */}
         </Navbar.Collapse>
       </Container>
-      <LoginModal showModal={showModal} handleLoginModal={handleLoginModal}/>
+      <LoginModal showModal={showModal} onHide={handleLoginModal} handleLoginModal={handleLoginModal}/>
     </Navbar>
   );
 };

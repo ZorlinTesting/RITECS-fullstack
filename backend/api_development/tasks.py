@@ -82,6 +82,34 @@ def link_images_to_segmentation():
 #             image.save()
 #             return image.uploaded_at.date()
 #     return None
+# from api_development.utilities import compress_image
+# ## UPDATED TO INCLUDE IMAGE COMPRESSION
+# @shared_task
+# def process_image_file(filename, machine_id):
+#     machine = Machine.objects.get(id=machine_id)
+#     directory_path = clean_string(machine.related_directory)
+#     full_path = os.path.join(settings.EXTERNAL_FILES_PATH, directory_path, filename)
+#     compressed_filename = f"compressed_{filename}"
+#     compressed_path = os.path.join(settings.EXTERNAL_FILES_PATH, directory_path, compressed_filename)
+#     print(f"Attempting to open: {compressed_path}")
+
+#     if 'rslt' in filename:
+#         return None
+
+#     # Compress the image
+#     if not os.path.exists(compressed_path):
+#         compress_image(full_path, compressed_path)
+
+#     image_ref = os.path.join(directory_path, compressed_filename)
+
+#     if not Image.objects.filter(image_ref=image_ref).exists():
+#         with open(compressed_path, 'rb') as file:
+#             image = Image(machine=machine, image_ref=image_ref, title=compressed_filename)
+#             image.save()
+#             return image.uploaded_at.date()
+#     return None
+
+## Do not delete until compression workflow is confirmed functional
 @shared_task
 def process_image_file(filename, machine_id):
     machine = Machine.objects.get(id=machine_id)

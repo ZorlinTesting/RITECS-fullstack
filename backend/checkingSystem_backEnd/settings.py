@@ -47,7 +47,7 @@ DOMAIN_NAME = 'localhost'
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', '100.65.172.77', '112.204.161.244']  # when changing WAN or PUBLIC IP, change this setting
 # ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', NGROK_HOST]
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', DOMAIN_NAME, '192.168.0.17']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', DOMAIN_NAME, '114.172.169.93']
 
 # Application definition
 
@@ -185,7 +185,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # Adjust the port based on your front-end server
     f'https://{DOMAIN_NAME}',
-    "http://192.168.0.17",
+    "http://114.172.169.93",
     # '*'
 ]
 CORS_ALLOW_CREDENTIALS = True
@@ -199,7 +199,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     f"https://{DOMAIN_NAME}",
     "http://0.0.0.0:8000",
-    "http://192.168.0.17",
+    "http://114.172.169.93",
 ]
 
 # SECURE_SSL_REDIRECT = True
